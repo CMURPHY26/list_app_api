@@ -5,20 +5,21 @@ class ListItemsController < ApplicationController
   def index
     @list_items = ListItem.all
 
-    render json: @list_items
+    render json: @list_items.to_json(include: :list)
   end
 
   # GET /list_items/1
   def show
-    render json: @list_item
+    render json: @list_item.to_json(include: :list)
   end
 
   # POST /list_items
   def create
     @list_item = ListItem.new(list_item_params)
+    @list_item.list_id = params[:list_id]
 
     if @list_item.save
-      render json: @list_item, status: :created, location: @list_item
+      render json: @list_item, status: :created
     else
       render json: @list_item.errors, status: :unprocessable_entity
     end
@@ -46,6 +47,6 @@ class ListItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def list_item_params
-      params.require(:list_item).permit(:name, :description)
+      params.require(:list_item).permit(:name, :description, :is_completed, :priority)
     end
 end
