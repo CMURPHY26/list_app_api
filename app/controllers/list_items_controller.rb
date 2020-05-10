@@ -4,7 +4,7 @@ class ListItemsController < ApplicationController
   # GET /list_items
   def index
     @list_items = ListItem.all
-
+    # @list_items.order(:priority)
     render json: @list_items.to_json(include: :list)
   end
 

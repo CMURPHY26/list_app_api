@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_05_09_001509) do
   create_table "list_items", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "is_completed"
-    t.integer "priority"
+    t.boolean "is_completed", default: false
+    t.integer "priority", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "list_id"

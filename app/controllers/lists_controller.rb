@@ -4,7 +4,6 @@ class ListsController < ApplicationController
   # GET /lists
   def index
     @lists = List.all
-
     render json: @lists.to_json(include: :list_items)
   end
 
