@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'lists#index'
   resources :lists do 
     resources :list_items, only: [:create, :show]
   end
